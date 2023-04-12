@@ -1,6 +1,3 @@
-# Untitled.py
-# Created by Kids on 2/27/23.
-# Git personal access token: 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
 import requests
 import json
 
