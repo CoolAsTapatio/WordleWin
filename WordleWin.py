@@ -1,10 +1,14 @@
 import requests
 import json
+#HW: add commit push new changes, add try exept for no answer, 
 
 def main():
 	print("WordleWin is meant to be used as a solver of games style like the New York Times Wordle. After your first guess, input the word and colors of each letter into the program (g-green, y-yellow, and w-white/gray). The program will return a word for you to guess. continue until you have solved the Wordle.\n")
 	guess = input("What was your first Wordle guess?\n")#//the guess variable is already created//
 	color = input("What was the color coding of your Wordle?\n")
+	if color == "ggggg":
+		print("Congratulations! you solved the Wordle in 1 guess!")
+		exit()
 	ht_of_yellow = {}
 	gray_letters = ""
 	query_param = ""# //what goes into the query for the letters//
@@ -51,14 +55,15 @@ def main():
 	################
 	###############
 	best_guess,sorted_viable_words = sort_viable_words(all_viable_words)
-	print(sort_viable_words)
-	print("WordleWin reccomends your next guess is:" + best_guess)
+	print("WordleWin reccomends your next guess is: " + best_guess)
 	next_guess_input = all_viable_words
 	for o in range(0, 5):
 		next_guess_input = guesser(next_guess_input)
-		print("WordleWin reccomends your next guess is:" + next_guess_input[0])
 		if next_guess_input == "You won!":
+			print("Congratulations! you solved the Wordle in " + str(o+1) + " guesses!")
 			break
+		print("WordleWin reccomends your next guess is: " + next_guess_input[0])
+		
 			
 
 
@@ -165,7 +170,7 @@ def guesser(viable_words):
 
 def query(query_param):
 	headers={"X-RapidAPI-Key": "12c2e794e4msh65bd636dedd764ep1a7ef5jsn710b1816978d", "Accept": "application/json", "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com"}
-	r = requests.request("GET", "https://wordsapiv1.p.rapidapi.com/words/?letters=5&limit=100000&letterPattern=^" + query_param + "$", headers=headers)
+	r = requests.request("GET", "https://wordsapiv1.p.rapidapi.com/words/?letters=5&limit=1000000&letterPattern=^" + query_param + "$", headers=headers)
 	return json.loads(r.text)['results']['data']
 
 		 
