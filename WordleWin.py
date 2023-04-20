@@ -1,7 +1,4 @@
-import requests
-import json
 import all_words as all_word_file
-#HW: add commit push new changes, add try exept for no answer, 
 #NEW ERROR, IF THERE ARE IS A YELLOW LETTER AND A GREEN OF THE SAME LETTER, THE BOT MAY GIVE A WORD WITH ONLY ONE LETTER IN THE GREEN'S POSITION
 #NEW Error, Word was hasty, guessed slate, wants, tasty, then it told me to guess tasty again
 def main():
@@ -9,8 +6,7 @@ def main():
 	next_guess_input = all_word_file.all_words
 	for o in range(0, 6):
 #		print()
-		if 'hasty' not in next_guess_input:
-			break
+
 		next_guess_input = guesser(next_guess_input)
 		if next_guess_input == "You won!":
 			print("Congratulations! you solved the Wordle in " + str(o+1) + " guesses!")
@@ -25,7 +21,6 @@ def guesser(viable_words):
 		return "You won!"
 	ht_of_green = {}
 	ht_of_yellow = {}
-#	ht_of_white = {}
 	gray_letters = ""
 	for i in range(0, 5):
 		if color[i] == "g":
@@ -40,11 +35,6 @@ def guesser(viable_words):
 				ht_of_yellow[guess[i]].append(i)	
 		elif color[i] == "w":
 			gray_letters += guess[i]
-#			if guess[i] not in ht_of_white:
-#				ht_of_white[guess[i]] = [i]
-#			else:
-#				ht_of_white[guess[i]].append(i)
-
 		else:
 			raise exception("colors should only be g, w, y")#Shouldn't terminate
 	all_viable_words = []
@@ -77,19 +67,9 @@ def guesser(viable_words):
 				if n in j:
 					is_viable = False
 					break
-#			if j.count(n) < len(ht_of_white[n]):
-#				is_viable = False
-#				break
-#			for q in ht_of_white[n]:
-#				if j[q] != n:
-#					is_viable = False
-#					break
 		if is_viable:
 			all_viable_words.append(j)
 	return all_viable_words
 		 
 if __name__ ==  "__main__":
 	main()
-#	print(sort_viable_words(all_word_file.all_words))
-#	print(all_word_file.all_words[0])
-			
