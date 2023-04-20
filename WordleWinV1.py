@@ -1,70 +1,63 @@
 import requests
 import json
-import all_words as all_word_file
 #HW: add commit push new changes, add try exept for no answer, 
-#NEW ERROR, IF THERE ARE IS A YELLOW LETTER AND A GREEN OF THE SAME LETTER, THE BOT MAY GIVE A WORD WITH ONLY ONE LETTER IN THE GREEN'S POSITION
+
 def main():
 	print("WordleWin is meant to be used as a solver of games style like the New York Times Wordle. After your first guess, input the word and colors of each letter into the program (g-green, y-yellow, and w-white/gray). The program will return a word for you to guess. continue until you have solved the Wordle.\n")
-#	guess = input("What was your first Wordle guess?\n")#//the guess variable is already created//
-#	color = input("What was the color coding of your Wordle?\n")
-#	if color == "ggggg":
-#		print("Congratulations! you solved the Wordle in 1 guess!")
-#		exit()
-#	ht_of_yellow = {}
-#	gray_letters = ""
-#	query_param = ""# //what goes into the query for the letters//
-#	for i in range(0, 5):
-#		if color[i] == "g":
-#			query_param += guess[i]
-#		elif color[i] == "y":
-#			if guess[i] not in ht_of_yellow:
-#				ht_of_yellow[guess[i]] = [i]
-#				query_param += "[a-z]"
-#			else:
-#				ht_of_yellow[guess[i]].append(i)	
-#				query_param += "[a-z]"
-#		elif color[i] == "w":
-#			gray_letters += guess[i]
-#			query_param += "[a-z]"
-#		else:
-#			raise exception("colors should only be g, w, y")
-#	all_words_in_param = all_word_file.all_words
-##	print(query_param)
-##	print(query(query_param))
-#	all_viable_words = []
-#	for j in all_words_in_param:
-#		is_viable = True
-#		for l in ht_of_yellow:
-#			if l not in j:
-#				is_viable = False
-#				break
-#			if j.count(l) < len(ht_of_yellow[l]):
-#				is_viable = False
-#				break
-#			for m in ht_of_yellow[l]:
-#				if j[m] == l:
-#					is_viable = False
-#					break
-#		for n in gray_letters:
-#			if n not in ht_of_yellow:
-#				if n in j:
-#					is_viable = False
-#					break
-#		if is_viable:
-#			all_viable_words.append(j)
-#	#################
+	guess = input("What was your first Wordle guess?\n")#//the guess variable is already created//
+	color = input("What was the color coding of your Wordle?\n")
+	if color == "ggggg":
+		print("Congratulations! you solved the Wordle in 1 guess!")
+		exit()
+	ht_of_yellow = {}
+	gray_letters = ""
+	query_param = ""# //what goes into the query for the letters//
+	for i in range(0, 5):
+		if color[i] == "g":
+			query_param += guess[i]
+		elif color[i] == "y":
+			if guess[i] not in ht_of_yellow:
+				ht_of_yellow[guess[i]] = [i]
+				query_param += "[a-z]"
+			else:
+				ht_of_yellow[guess[i]].append(i)	
+				query_param += "[a-z]"
+		elif color[i] == "w":
+			gray_letters += guess[i]
+			query_param += "[a-z]"
+		else:
+			raise exception("colors should only be g, w, y")
+	all_words_in_param = query(query_param)
+#	print(query_param)
+#	print(query(query_param))
+	all_viable_words = []
+	for j in all_words_in_param:
+		is_viable = True
+		for l in ht_of_yellow:
+			if l not in j:
+				is_viable = False
+				break
+			if j.count(l) < len(ht_of_yellow[l]):
+				is_viable = False
+				break
+			for m in ht_of_yellow[l]:
+				if j[m] == l:
+					is_viable = False
+					break
+		for n in gray_letters:
+			if n not in ht_of_yellow:
+				if n in j:
+					is_viable = False
+					break
+		if is_viable:
+			all_viable_words.append(j)
+	#################
 	################
 	###############
-#	best_guess,sorted_viable_words = sort_viable_words(all_viable_words)
-#	print("starting to sort")
-#	next_guess_input = sort_viable_words(all_word_file.all_words)
-#	print("done sorting")
-#	print("WordleWin reccomends your next guess is: " + best_guess)
-	next_guess_input = all_word_file.all_words
-	for o in range(0, 6):
-#		print()
-		if 'ditto' not in next_guess_input:
-			break
+	best_guess,sorted_viable_words = sort_viable_words(all_viable_words)
+	print("WordleWin reccomends your next guess is: " + best_guess)
+	next_guess_input = all_viable_words
+	for o in range(0, 5):
 		next_guess_input = guesser(next_guess_input)
 		if next_guess_input == "You won!":
 			print("Congratulations! you solved the Wordle in " + str(o+1) + " guesses!")
@@ -183,6 +176,4 @@ def query(query_param):
 		 
 if __name__ ==  "__main__":
 	main()
-#	print(sort_viable_words(all_word_file.all_words))
-#	print(all_word_file.all_words[0])
 			
