@@ -6,7 +6,7 @@ def main(): #driver
 	next_guess_input = all_word_file.all_words #simplifying the list to a variable
 	for o in range(0, 6): #all code for each guess
 		next_guess_input = guesser(next_guess_input, o) #thinning the list of viable words according to new color data
-		print("WordleWin reccomends your next guess is: " + next_guess_input[0]) #giving user next guess
+		print("WordleWin recommends your next guess is: " + next_guess_input[0]) #giving user next guess
 		print("Other words are" + str(next_guess_input)) #showing user all other remaing words
 
 def guesser(viable_words, o): # function for each individual guess
