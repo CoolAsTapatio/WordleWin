@@ -10,7 +10,10 @@ def main(): #driver
 		print("Other words are" + str(next_guess_input)) #showing user all other remaing words
 
 def guesser(viable_words, o): # function for each individual guess
-	guess = input("What was your next Wordle guess?\n") #what the user's word was
+	if o == 0:
+		guess = input("What was your first Wordle guess?\n") #what the user's word was
+	else:
+		guess = input("What was your next Wordle guess?\n") #what the user's word was
 	color = input("What was the color coding of your Wordle?\n") #what colors (white green yellow) the user had
 	if color == "ggggg": #checking for win
 		print("Congratulations! you solved the Wordle in " + str(o+1) + " guesses!")
