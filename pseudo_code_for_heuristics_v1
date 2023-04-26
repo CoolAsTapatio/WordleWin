@@ -1,0 +1,8 @@
+list.sort(lambda(frequency)
+frequency():
+	English language frequency
+frequency():
+	score_tracker = 0
+	for i in word:
+		score_tracker += scrabble score
+	return frequency/score_tracker

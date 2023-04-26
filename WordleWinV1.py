@@ -1,5 +1,6 @@
 import requests
 import json
+import heuristics as heuristics
 #HW: add commit push new changes, add try exept for no answer, 
 
 def main():
@@ -84,7 +85,7 @@ def main():
 
 
 def sort_viable_words(viable_words):
-	viable_words.sort(key=lambda x:frequence_getter(x), reverse=True)
+	viable_words.sort(key=lambda x:heuristics.sorter(frequence_getter(x), x), reverse=True)
 	print("viable words:" + str(viable_words))
 	return viable_words[0], viable_words
 	
