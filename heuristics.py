@@ -5,7 +5,7 @@ def sorter(word):#formula = frequency, reciprocal letter frequency (gets less im
 	for j in word:
 		letter_score += letter_value[j]
 		if letter_value[j] in letters_in_word:
-			letter_score/2
+			letter_score = letter_score*2
 		letters_in_word.append(letter_value[j])
 		
 #	print(letter_score)
