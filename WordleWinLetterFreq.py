@@ -1,4 +1,4 @@
-import all_words_letter_frequency as all_word_file #Stanford list of all 5 letter words, previously according to frequency by Words Api
+import AllWordsLists.all_words_letter_frequency as all_word_file #Stanford list of all 5 letter words, previously according to frequency by Words Api
 #NEW ERROR, IF THERE ARE IS A YELLOW LETTER AND A GREEN OF THE SAME LETTER, THE BOT MAY GIVE A WORD WITH ONLY ONE LETTER IN THE GREEN'S POSITION
 #NEW Error, Word was hasty, guessed slate, wants, tasty, then it told me to guess tasty again
 def main(): #driver
